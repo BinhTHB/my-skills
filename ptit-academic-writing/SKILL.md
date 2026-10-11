@@ -1,53 +1,67 @@
 ---
 name: ptit-academic-writing
-description: Kỹ năng soạn thảo báo cáo Bài tập lớn, Tiểu luận, Đồ án ngành và Khóa luận PTIT với thể thức chuẩn chỉnh 100% (trang bìa, căn lề, IEEE), nhưng nội dung hành văn tự nhiên đúng tầm sinh viên đại học (chân thực, tập trung thực hành, có sạn tự nhiên, không đao to búa lớn).
+description: Soan thao bao cao Bai tap lon (BTL), Tieu luan, Do an chuyen nganh va Khoa luan tot nghiep theo chuan Hoc vien Cong nghe Buu chinh Vien thong (PTIT). Cau truc mo-dun phi hardcode linh hoat theo de tai. Tich hop toan dien ky nang /docx-official trong references/docx-official de thao tac DOCX. Luon luon chinh sua tren file co san (assets/template_ptit.docx hoac file cua nguoi dung), khong tao moi tu dau. Tu dong sao luu ban cu vao thu muc back-up-docx moi khi thay doi. Van phong dung tam sinh vien dai hoc thuc te, chap nhan san tu nhien, trich dan IEEE.
+user-invocable: true
+argument-hint: "btl | do-an | tieu-luan | edit-docx | outline"
 license: MIT
 metadata:
   category: "academic-writing"
-  tags: "PTIT, Academic Writing, Report, Student Level, Realistic, Word DOCX"
+  tags: "PTIT, Academic Writing, BTL, Report, Thesis, Student Level, IEEE, Word DOCX, Template Edit, Auto Backup, Non-hardcoded, docx-official"
 ---
 
 # Kỹ năng Soạn thảo Báo cáo Học thuật PTIT (Tầm Sinh viên Thực tế)
 
-Kỹ năng này đảm bảo sự cân bằng hoàn hảo giữa:
-1. **Hình thức & Thể thức:** Chuẩn xác 100% theo quy chế văn bản PTIT (khung hoa văn, Logo, căn lề, Header/Footer, trích dẫn IEEE, bảng biểu/hình vẽ).
-2. **Nội dung & Văn phong:** Đúng tầm sinh viên đại học năm 3, năm 4 làm đồ án thực tế: mộc mạc, trực diện vào mã nguồn và dữ liệu thực, chấp nhận các hạn chế và "sạn tự nhiên" của bài tập lớn, không hoa mỹ kiểu bài báo quốc tế hay văn phong AI hoàn hảo.
+Kỹ năng này chuyên sâu về lập đề cương, soạn thảo nội dung kỹ thuật, trích dẫn học thuật IEEE và định dạng/chỉnh sửa tài liệu báo cáo đúng 100% quy chuẩn của **Học viện Công nghệ Bưu chính Viễn thông (PTIT)** với cấu trúc mô-đun linh hoạt, hoàn toàn phi hardcode.
 
 ---
 
-## 1. Bản đồ Tham chiếu Tài liệu (Reference Index)
+## 1. Bản đồ Tham chiếu (Reference Index)
 
-| Tác vụ / Nghiệp vụ | Tài liệu Tham chiếu |
+| Nghiệp vụ / Nhu cầu | Nguồn tham chiếu (Nội bộ & Hệ thống) |
 | :--- | :--- |
-| **Quy chuẩn Thể thức & Trang in PTIT** (Căn lề, cỡ chữ 13pt, trang bìa hoa văn, Logo, Caption) | `references/ptit-standards.md` |
-| **Văn phong Sinh viên & Sạn Tự nhiên** (Cách viết chân thực, tránh văn phong AI giáo sư, tả lỗi thật) | `references/anti-ai-academic-tone.md` |
-| **Khung Cấu trúc Báo cáo theo Đề tài** (BTL Dữ liệu, Đồ án Web/App, Nghiên cứu AI/Thuật toán) | `references/report-types-structure.md` |
+| **Kỹ thuật Thao tác DOCX Chuyên sâu** (Đọc, trích xuất text, sửa OOXML DOM, unpack/pack, redlining) | **Tích hợp trọn bộ `/docx-official` nội bộ:** `references/docx-official/SKILL.md`, `references/docx-official/ooxml.md`, `references/docx-official/docx-js.md` |
+| **Quy trình Khung mẫu PTIT & Tự động sao lưu** (Khung mẫu linh hoạt `assets/template_ptit.docx`, tự động lưu `back-up-docx`) | `references/docx-template-and-backup-workflow.md` & `scripts/docx_tools.py` |
+| **Cấu trúc Mô-đun Báo cáo Phi Hardcode** (BTL 3-4 chương, Tiểu luận 3 phần, Đồ án/Khóa luận 4-5 chương) | `references/report-types-structure.md` |
+| **Quy chuẩn Thể thức PTIT** (Căn lề, Font 13pt, Bìa hoa văn + Logo, Quy cách Bảng/Hình) | `references/ptit-standards.md` |
+| **Văn phong Sinh viên & Sạn Tự nhiên** (Cách viết chân thực, tránh văn phong AI giáo sư) | `references/anti-ai-academic-tone.md` |
 | **Cẩm nang Trích dẫn Chuẩn IEEE** (Quy tắc đánh số [1], [2]... khớp nội văn) | `references/ieee-citation-guide.md` |
-| **Kịch bản Tự động Xuất DOCX** (Code Python `python-docx` tạo file Word chuẩn ngay lập tức) | `references/docx-generator-script.md` |
 
 ---
 
-## 2. Các Nguyên tắc Soạn thảo Cốt lõi
+## 2. Hai Quy tắc Bất Di Bất Dịch khi Thao tác DOCX
 
-### A. Hình thức Chuẩn chỉnh (Nghiêm ngặt)
-- Trang bìa có khung viền hoa văn (`assets/Khung.png`) và Logo PTIT (`assets/Logo.png`).
-- Căn lề: Trái 3.0–3.5 cm (đóng gáy), Phải 1.5–2.0 cm, Trên/Dưới 2.0–2.5 cm.
-- Phông chữ Times New Roman 13 pt (hoặc 14 pt), giãn dòng 1.3–1.5 lines.
-- Đánh số trang: Chữ số La Mã (`i, ii...`) cho phần đầu; Số Arab (`1, 2...`) từ Mở đầu đến hết.
-- Caption: Tiêu đề Bảng ở **TRÊN**, tiêu đề Hình ở **DƯỚI**.
+Mọi kỹ thuật đọc, sửa đổi, phân tích file DOCX được thực hiện theo tiêu chuẩn của **`/docx-official`**, kết hợp 2 quy tắc bắt buộc của PTIT:
 
-### B. Nội dung Đúng Tầm Sinh viên Đại học (Chân thực & Tự nhiên)
-- **Tập trung vào giải pháp thực hành:** Mô tả cụ thể đã dùng thư viện gì (Pandas, BeautifulSoup, Express, Flutter...), viết hàm xử lý nào, gặp khó khăn gì khi triển khai và đã xử lý ra sao.
-- **Tránh từ ngữ đao to búa lớn:** Không dùng các cụm từ sáo rỗng như *"cuộc cách mạng công nghiệp 4.0", "giải pháp tối thượng", "đột phá vượt bậc"*.
-- **Số liệu & Môi trường thực tế:** Báo cáo trên môi trường máy cá nhân thực tế (Laptop Core i5/i7, 8GB-16GB RAM), dữ liệu vài nghìn đến vài chục nghìn dòng, thời gian xử lý thực tế vài giây đến vài phút.
-- **Thừa nhận hạn chế một cách trung thực:** Nêu rõ những điểm đồ án chưa làm được (ví dụ: giao diện còn đơn giản, chưa xử lý được dữ liệu realtime quy mô lớn, thuật toán chỉ chạy trên tập mẫu nhỏ).
+1. **LUÔN LUÔN CHỈNH SỬA CÁI CÓ SẴN (KHÔNG TẠO MỚI TỪ CON SỐ 0):**
+   - **Đã có file báo cáo:** Thao tác trực tiếp trên file Word `.docx` của người dùng.
+   - **Làm bài mới:** Bắt buộc sao chép khung mẫu linh hoạt từ `assets/template_ptit.docx` ra làm file đích rồi sửa nội dung. Tuyệt đối không tạo file trắng từ con số 0.
+2. **LUÔN TỰ ĐỘNG ĐƯA BẢN CŨ VÀO THƯ MỤC `back-up-docx`:**
+   - Mỗi lần có lệnh sửa văn bản, thay thế nội dung hoặc nối chương mới, hệ thống tự động nhân bản file hiện tại vào thư mục `back-up-docx/` nằm cùng cấp:
+     `[thư_mục_chứa_file]/back-up-docx/[tên_file]_[YYYYMMDD_HHMMSS].docx`
+   - Đảm bảo an toàn 100% cho dữ liệu của người dùng, không bao giờ bị mất bài cũ.
 
 ---
 
-## 3. Quy trình 5 Bước Xuất Báo cáo
+## 3. Cấu trúc Báo cáo Phi Hardcode (Dynamic Academic Modular Structure)
 
-1. **Lập dàn ý (Outline):** Phân chia đề tài thành Mở đầu, 4 Chương kỹ thuật và Kết luận theo `references/report-types-structure.md`.
-2. **Viết nội dung kỹ thuật:** Viết theo giọng văn sinh viên thực tế tại `references/anti-ai-academic-tone.md`.
-3. **Chèn Hình vẽ, Bảng biểu & Mã nguồn:** Bổ sung ảnh chụp màn hình chạy thử, biểu đồ thực nghiệm, bảng dữ liệu mẫu có đánh số chương.
-4. **Gắn mã trích dẫn IEEE:** Thêm các nguồn tài liệu tham khảo chính thống bằng mã `[1]`, `[2]`...
-5. **Xuất file Word DOCX:** Chạy script `ptit_docx_builder.py` để đóng gói file báo cáo hoàn chỉnh nộp giảng viên.
+Cấu trúc tài liệu không bị gò bó trong một số lượng chương cố định mà thích ứng linh hoạt theo loại bài và yêu cầu của giảng viên:
+- **Bài tập lớn môn học (BTL):** 3 chương (môn lập trình, ứng dụng, mạng) hoặc 4 chương (môn dữ liệu, AI, hệ thống phức hợp).
+- **Tiểu luận môn học:** 3 Phần lớn (Mở đầu – Nội dung – Kết luận) hoặc các mục La Mã (I, II, III).
+- **Đồ án chuyên ngành / Khóa luận tốt nghiệp:** 4 đến 5 chương, bổ sung Lời cam đoan, Phiếu giao nhiệm vụ, Nhận xét GVHD và Cán bộ phản biện.
+- **Danh mục Bảng biểu & Hình vẽ:** Chỉ thêm khi bài viết có từ 2 bảng biểu hoặc 2 hình vẽ trở lên. Nếu bài viết không có bảng/hình thì không để danh mục rỗng.
+- **Mục lục:** Tích hợp trường mã Word TOC tự động (`TOC \o "1-3" \h \z \u`), tự động cập nhật số trang khi người dùng thêm/bớt đề mục.
+
+---
+
+## 4. Các Nguyên tắc Soạn thảo Cốt lõi
+
+### A. Thể thức & Trang in Chuẩn 100% PTIT
+1. **Trang bìa chính:** Khung viền hoa văn (`assets/Khung.png`) chìm sau văn bản (`behindDoc="1"`), Logo PTIT (`assets/Logo.png`), cơ quan chủ quản `BỘ THÔNG TIN VÀ TRUYỀN THÔNG` -> `HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG`.
+2. **Căn lề trang A4:** Lề trên: 2.0cm, Lề dưới: 2.0cm, Lề trái: 2.5-3.0cm (đóng gáy), Lề phải: 1.5-2.0cm.
+3. **Phông chữ & Đoạn văn:** `Times New Roman` 13pt, màu thuần đen (`RGBColor(0, 0, 0)`), Before 6pt, After 6pt, giãn dòng 1.3, First Line Indent 1.0cm.
+4. **Tiêu đề Bảng biểu & Hình vẽ:** Bảng đặt tiêu đề ở **TRÊN**; Hình vẽ/Sơ đồ đặt tiêu đề ở **DƯỚI**.
+
+### B. Nội dung & Văn phong Sinh viên Thực tế (Anti-AI)
+1. **Đúng tầm sinh viên:** Trình bày trực diện vào việc code, thư viện thực tế (Pandas, Streamlit, PyTorch, Express...), dữ liệu thật và các bước giải quyết lỗi.
+2. **Chấp nhận sạn tự nhiên & hạn chế:** Mô tả đúng môi trường máy cá nhân Core i5/16GB RAM, tập dữ liệu vài chục nghìn dòng, thời gian xử lý thực tế.
+3. **Trích dẫn IEEE đầy đủ:** Gắn mã số `[1]`, `[2]`... khớp 1-1 với danh mục tham khảo.
