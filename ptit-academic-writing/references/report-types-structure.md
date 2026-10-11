@@ -2,6 +2,8 @@
 
 Tài liệu này cung cấp các khung cấu trúc chuẩn hóa nhưng **hoàn toàn linh hoạt (không hardcode)** cho từng loại hình văn bản học thuật tại Học viện Công nghệ Bưu chính Viễn thông (PTIT). Số lượng chương, tên mục và các khối thủ tục phải thích ứng theo đề tài và yêu cầu cụ thể của giảng viên.
 
+
+> **Khung mẫu tương ứng:** Khung A và B dùng `assets/template_btl.docx` (có thể thêm chương bằng `append`). Khung D dùng `assets/template_do_an.docx`. Khung C dùng `assets/template_tieu_luan.docx`. Thông số trình bày xem `ptit-standards.md`.
 ---
 
 ## 1. Nguyên tắc Cấu trúc Phi Hardcode (Dynamic Modular Rules)

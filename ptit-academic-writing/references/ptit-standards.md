@@ -4,6 +4,10 @@ Tài liệu này quy định chi tiết toàn bộ các thông số kỹ thuật
 
 ---
 
+Các số liệu và ví dụ trong tài liệu này chỉ minh họa. Không dùng làm kết quả thật.
+
+---
+
 ## 1. Thông số Kỹ thuật Trang in (Page Setup)
 
 | Thông số | Tiêu chuẩn PTIT | Ghi chú |
@@ -11,7 +15,7 @@ Tài liệu này quy định chi tiết toàn bộ các thông số kỹ thuật
 | **Khổ giấy** | A4 (210 mm x 297 mm) | Hướng in dọc (Portrait) |
 | **Lề trên (Top)** | 2.0 cm – 2.5 cm | Khoảng cách từ mép trên đến dòng đầu |
 | **Lề dưới (Bottom)** | 2.0 cm – 2.5 cm | Khoảng cách từ mép dưới đến dòng cuối |
-| **Lề trái (Left)** | 3.0 cm – 3.5 cm | Bắt buộc chừa khoảng trống đóng gáy đồ án |
+| **Lề trái (Left)** | 3.0 cm – 3.5 cm (bìa dùng 2.5 cm theo khung mẫu) | Bắt buộc chừa khoảng trống đóng gáy đồ án |
 | **Lề phải (Right)** | 1.5 cm – 2.0 cm | Căn chỉnh đối xứng thẩm mỹ |
 | **Header / Footer** | 1.5 cm | Khoảng cách số trang tới mép giấy |
 
@@ -39,35 +43,21 @@ Tài liệu này quy định chi tiết toàn bộ các thông số kỹ thuật
 
 ---
 
-## 3. Quy chuẩn Trang Bìa PTIT (Cover Page)
+## 3. Quy chuẩn trang bìa PTIT
 
-Trang bìa chính (bìa ngoài) và bìa phụ (bìa lót) phải tuân thủ nghiêm ngặt thứ tự từ trên xuống dưới, đặt trong khung viền hoa văn đối xứng 4 góc (`assets/Khung.png`):
+Trang bìa đã có sẵn trong các khung mẫu (`assets/template_*.docx`, trang 1). Không dựng lại bìa bằng tay. Các trường bắt buộc, theo thứ tự từ trên xuống:
 
-```
-+-------------------------------------------------------------+
-|               BỘ THÔNG TIN VÀ TRUYỀN THÔNG                 | (12-13pt, In hoa, Đậm, Giữa)
-|        HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG             | (13-14pt, In hoa, Đậm, Giữa)
-|                  KHOA CÔNG NGHỆ THÔNG TIN 1                 | (13-14pt, In hoa, Đậm, Giữa)
-|                                                             |
-|                       [LOGO PTIT]                           | (Width: 3.5 - 4.5 cm)
-|                                                             |
-|                   BÁO CÁO BÀI TẬP LỚN                       | (16-18pt, In hoa, Đậm, Giữa)
-|             HỌC PHẦN: TRỰC QUAN HÓA DỮ LIỆU                | (14pt, In hoa, Đậm, Giữa)
-|                                                             |
-|                           ĐỀ TÀI:                           | (14pt, In hoa, Đậm, Giữa)
-|    PHÂN TÍCH VÀ TRỰC QUAN HÓA THỊ TRƯỜNG LAPTOP VIỆT NAM    | (18-20pt, In hoa, Đậm, Giữa)
-|                                                             |
-|   Giảng viên hướng dẫn : TS. Nguyễn Văn A                   | (13pt, Regular, Tab thụt trái)
-|   Sinh viên thực hiện  : Tạ Hoài Bình                       | (13pt, Regular)
-|   Mã sinh viên         : B23DCKD008                         | (13pt, Regular)
-|   Lớp                  : D23CQKD01-B                        | (13pt, Regular)
-|   Nhóm môn học         : Nhóm 05                            | (13pt, Regular)
-|                                                             |
-|                      HÀ NỘI - 2026                          | (13-14pt, In hoa, Đậm, Giữa)
-+-------------------------------------------------------------+
-```
+1. Dòng cơ quan chủ quản: BỘ THÔNG TIN VÀ TRUYỀN THÔNG (12–13 pt, in hoa, đậm, căn giữa).
+2. Học viện: HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG (13–14 pt, in hoa, đậm, căn giữa).
+3. Khoa chuyên ngành (13–14 pt, in hoa, đậm, căn giữa).
+4. Logo PTIT, rộng 3.5–4.5 cm, căn giữa.
+5. Loại báo cáo (16–18 pt, in hoa, đậm, căn giữa): BÁO CÁO BÀI TẬP LỚN / TIỂU LUẬN / ĐỒ ÁN / KHÓA LUẬN.
+6. Học phần (14 pt, in hoa, đậm).
+7. Đề tài (14 pt in hoa; tên đề tài 18–20 pt, in hoa, đậm).
+8. Thông tin người thực hiện, căn trái với tab thụt đều, 13 pt: GVHD, sinh viên, mã sinh viên, lớp, nhóm môn học.
+9. Năm (13–14 pt, in hoa, đậm, căn giữa), ví dụ HÀ NỘI - 2026.
 
----
+Bìa không có số trang. Khung hoa văn nằm sau chữ (`behindDoc`).
 
 ## 4. Quy chuẩn Bảng biểu, Hình vẽ, Phương trình
 

@@ -4,6 +4,8 @@ Tài liệu này định hướng cách viết bài **đúng tầm sinh viên đ
 
 ---
 
+> **Lưu ý về số liệu:** các số trong ví dụ bên dưới (86.5%, 50.000 bản ghi, 15-20 triệu đồng...) chỉ minh họa cách viết. Khi viết báo cáo thật, chỉ dùng kết quả thực tế của người dùng. Nếu chưa có số, dùng placeholder như `[KẾT QUẢ ĐO]` và hỏi lại.
+
 ## 1. Định vị Văn phong: Đúng Tầm Sinh viên Đại học
 
 ### A. Giữ đúng bản chất đồ án môn học / BTL

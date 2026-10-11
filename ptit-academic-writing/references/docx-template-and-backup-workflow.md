@@ -1,69 +1,67 @@
-# Quy trình Thao tác DOCX PTIT, Khung mẫu Linh hoạt & Sao lưu Tự động
+# Khung mẫu DOCX và quy trình sao lưu
 
-Mọi kỹ thuật thao tác với file DOCX (đọc nội dung, trích xuất text, sửa văn bản, can thiệp OOXML, bảng biểu, redlining / tracked changes) **tham chiếu trực tiếp kỹ năng `/docx-official`** và tài liệu đính kèm tại `references/docx-official/`. Kỹ năng này không lặp lại các hướng dẫn kỹ thuật đó.
-
----
-
-## 1. Hai Nguyên tắc Bắt buộc của PTIT
-
-1. **LUÔN LUÔN CHỈNH SỬA CÁI CÓ SẴN (KHÔNG TẠO MỚI TỪ CON SỐ 0):**
-   - **Đã có file báo cáo:** Thao tác trực tiếp trên file Word `.docx` của người dùng theo quy trình của kỹ năng `/docx-official`.
-   - **Làm bài mới:** Sao chép nguyên vẹn khung mẫu có sẵn từ `assets/template_ptit.docx` ra thư mục làm việc, sau đó dùng kỹ năng `/docx-official` hoặc script tiện ích để thay thế nội dung. Tuyệt đối không tạo file Word trắng từ đầu.
-
-2. **LUÔN TỰ ĐỘNG ĐƯA BẢN CŨ VÀO THƯ MỤC `back-up-docx`:**
-   - Trước khi lưu đè bất kỳ thay đổi nào, file hiện tại phải được nhân bản vào thư mục `back-up-docx/` nằm cùng cấp:
-     ```
-     [thư_mục_chứa_file]/back-up-docx/[tên_file]_[YYYYMMDD_HHMMSS].docx
-     ```
-   - Đảm bảo 100% dữ liệu gốc được bảo toàn, sinh viên có thể đối chiếu hoặc quay lui bất kỳ lúc nào.
+Tài liệu này mô tả các khung mẫu, placeholder và công cụ Python. Thông số trình bày nằm trong `ptit-standards.md`. Thao tác OOXML chuyên sâu nằm trong `docx-official/`.
 
 ---
 
-## 2. Khung Mẫu DOCX Chuẩn Học viện (`assets/template_ptit.docx`)
+## 1. Khung mẫu theo loại báo cáo
 
-Khung mẫu có sẵn đã được thiết kế chuẩn mực nhưng **hoàn toàn phi hardcode (không gò bó một đề tài hay số chương cố định)**:
-- **Trang bìa (Section 1):** Khung hoa văn viền chìm (`assets/Khung.png`), `Logo.png` 3.5cm, lề Trái 2.5cm, Phải 2.0cm, Trên 2.0cm, Dưới 2.0cm.
-- **Thân bài (Section 2):** Bỏ viền hoa văn, header ngắt liên kết, footer canh giữa có trường mã Word `PAGE` tự động, lề Trái 3.0cm (đóng gáy), Phải 1.5cm, Trên 2.0cm, Dưới 2.0cm.
-- **Hệ thống đề mục & Mục lục:**
-  - Mục lục tích hợp trường mã Word TOC tự động (`TOC \o "1-3" \h \z \u`), tự động cập nhật số trang khi người dùng thêm/bớt mục.
-  - Các khối mô-đun mẫu: Lời cảm ơn/cam đoan, Danh mục từ viết tắt, Mở đầu, Các chương nội dung, Kết luận, Tài liệu tham khảo IEEE.
+| File | Loại | Thành phần đặc trưng |
+| :--- | :--- | :--- |
+| `assets/template_btl.docx` | BTL, 3 chương | Lời cảm ơn, Danh mục viết tắt (bảng 0.1), Mục lục, Phần mở đầu, 3 chương, Kết luận, Tài liệu tham khảo |
+| `assets/template_do_an.docx` | Đồ án, khóa luận, 4 chương | Phiếu giao nhiệm vụ, Lời cam đoan, Lời cảm ơn, Nhận xét GVHD, Nhận xét phản biện, Tóm tắt VN, Abstract, Mục lục, Danh mục viết tắt, Danh mục bảng, Danh mục hình, Phần mở đầu, 4 chương, Kết luận, Tài liệu tham khảo, Phụ lục |
+| `assets/template_tieu_luan.docx` | Tiểu luận, 3 phần lớn | Mục lục, Phần 1 (mở đầu), Phần 2 (nội dung), Phần 3 (kết luận), Tài liệu tham khảo |
 
-### Bảng Placeholder Động trong Khung mẫu:
-| Placeholder | Ý nghĩa thay thế (Linh hoạt theo loại bài) |
+Cấu trúc chung của cả ba file:
+
+- **Section 1 (bìa):** không có số trang. Khung hoa văn và logo nằm trong header.
+- **Section 2 (phần đầu):** số La Mã (i, ii, iii...), bắt đầu từ 1.
+- **Section 3 (thân bài):** số Ả Rập, bắt đầu từ 1.
+- Tiêu đề dùng style Heading 1, 2, 3. Mục lục là trường TOC đã được điền sẵn số trang.
+- Trang đầu của mỗi chương, mỗi mục lớn bắt đầu trang mới.
+
+Các mục trong khung mẫu có chứa ghi chú "xóa mục này nếu..." (danh mục bảng, danh mục hình). Hãy xóa khi không cần.
+
+---
+
+## 2. Placeholder
+
+| Placeholder | Ý nghĩa |
 | :--- | :--- |
-| `[KHOA CHUYÊN NGÀNH]` | Khoa Viễn thông 1, Khoa CNTT 1, Khoa ATTT, v.v. |
-| `[BÁO CÁO BÀI TẬP LỚN / TIỂU LUẬN / ĐỒ ÁN / KHÓA LUẬN]` | Loại hình văn bản học thuật |
-| `[TÊN HỌC PHẦN]` | Tên môn học (VD: Trực quan hóa dữ liệu, Kỹ thuật lập trình...) |
-| `[TÊN ĐỀ TÀI BÁO CÁO HOẶC ĐỒ ÁN NGHIÊN CỨU]` | Tên đề tài nghiên cứu chính |
+| `[KHOA CHUYÊN NGÀNH]` | Khoa, ví dụ Khoa Công nghệ thông tin 1 |
+| `[TÊN HỌC PHẦN]` | Tên học phần, ví dụ Trực quan hóa dữ liệu |
+| `[TÊN ĐỀ TÀI BÁO CÁO HOẶC ĐỒ ÁN NGHIÊN CỨU]` | Tên đề tài |
 | `[HỌ VÀ TÊN GIẢNG VIÊN]` | Giảng viên hướng dẫn |
-| `[HỌ VÀ TÊN SINH VIÊN]` | Họ tên sinh viên thực hiện |
-| `[MÃ SINH VIÊN]` | Mã số sinh viên (VD: B23DCKD008) |
-| `[LỚP SINH VIÊN]` | Lớp chuyên ngành (VD: D23CQKD02-B) |
-| `[NHÓM MÔN HỌC]` | Nhóm môn học tín chỉ |
-| `[NĂM]` | Năm bảo vệ / nộp bài (VD: 2026) |
+| `[HỌ VÀ TÊN SINH VIÊN]` | Họ và tên sinh viên |
+| `[MÃ SINH VIÊN]` | Mã sinh viên, ví dụ B23DCKD008 |
+| `[LỚP SINH VIÊN]` | Lớp, ví dụ D23CQKD01-B |
+| `[NHÓM MÔN HỌC]` | Nhóm môn học, ví dụ Nhóm 05 |
+| `[NĂM]` | Năm nộp bài, ví dụ 2026 |
+
+Đồ án có thêm `[TÊN NGÀNH]` (dòng "NGÀNH:" trên bìa). Tiểu luận dùng chung placeholder với BTL.
 
 ---
 
-## 3. Bản đồ Tham chiếu Kỹ thuật với Kỹ năng `/docx-official`
+## 3. Công cụ Python (`scripts/docx_tools.py`)
 
-Mọi tài liệu và công cụ chuyên sâu của `/docx-official` đã được tích hợp sẵn tại thư mục nội bộ `references/docx-official/`:
-
-| Nhu cầu kỹ thuật | Tài liệu / Script tham chiếu nội bộ |
-| :--- | :--- |
-| **Quy trình tổng quan DOCX** | `references/docx-official/SKILL.md` |
-| **Thao tác chuyên sâu OOXML, thẻ XML, DOM** | `references/docx-official/ooxml.md` |
-| **Soạn thảo DOCX theo JavaScript/TypeScript** | `references/docx-official/docx-js.md` |
-| **Giải nén & Định dạng đẹp XML an toàn** | `references/docx-official/ooxml/scripts/unpack.py` |
-| **Đóng gói lại file DOCX chuẩn nén** | `references/docx-official/ooxml/scripts/pack.py` |
-| **Thư viện Python thao tác Document DOM** | `references/docx-official/scripts/document.py` |
-| **Redlining (Tracked Changes) có kiểm soát** | Xem phần Redlining Workflow trong `references/docx-official/SKILL.md` |
+- `template_path_for(kind)`: trả về file khung mẫu theo loại (`btl`, `do-an`, `tieu-luan`).
+- `ensure_existing_docx(docx_path, kind)`: nếu file đích chưa có, sao chép từ khung mẫu tương ứng. Không tạo file trắng.
+- `backup_docx(docx_path)`: sao lưu vào `back-up-docx/` kèm dấu thời gian. Nếu trùng giây, thêm `_2`, `_3`.
+- `replace_in_docx(docx_path, replacements, output_path=None)`: thay placeholder ở cấp run. Quét thân bài, bảng lồng nhau, header và footer. Giữ định dạng của từng run.
+- `append_to_existing_docx(docx_path, new_content, before=None, output_path=None)`: chèn nội dung trước một tiêu đề. Định dạng heading và thân bài theo quy chuẩn PTIT, heading có style Heading để mục lục nhận diện.
+- `check_document(docx_path)`: kiểm tra tiêu đề thiếu style, trường mục lục, placeholder còn sót, đoạn trống, số section.
+- `unpack_docx` và `pack_docx`: ủy quyền cho `docx-official/ooxml/scripts/unpack.py` và `pack.py`.
 
 ---
 
-## 4. Công cụ Tiện ích Nội bộ (`scripts/docx_tools.py`)
+## 4. Dựng lại khung mẫu
 
-Cung cấp các hàm tự động hóa bảo vệ an toàn dữ liệu:
-- `ensure_existing_docx(docx_path)`: Tự động khởi tạo từ `assets/template_ptit.docx` nếu file đích chưa tồn tại (tuyệt đối không tạo file trắng).
-- `backup_docx(docx_path)`: Tự động nhân bản file cũ vào thư mục `back-up-docx/` kèm dấu thời gian `_YYYYMMDD_HHMMSS`.
-- `replace_in_docx(docx_path, replacements)`: Thay thế placeholder giữ nguyên 100% định dạng phông chữ, bảng biểu và hoa văn trang bìa.
-- `append_to_existing_docx(docx_path, new_content)`: Bổ sung chương/tiểu mục mới chuẩn phông Times New Roman 13pt.
+`scripts/build_templates.py` dựng ba file khung mẫu từ đặc tả nội dung, lấy bìa và logo từ `assets/src/base_cover.docx`. Quy trình:
+
+1. Dựng tài liệu với mục lục có số trang giả.
+2. Render bằng LibreOffice, tìm trang thật của từng tiêu đề bằng `pdftotext`.
+3. Dựng lại với số trang đã đo. Số dòng mục lục không đổi nên bố cục giữ nguyên.
+4. Kiểm tra lại: số trang đo lần hai phải khớp.
+5. Bỏ thumbnail cũ và đặt metadata sạch.
+
+Để sửa nội dung khung mẫu, chỉnh đặc tả trong `build_templates.py` rồi chạy lại. Không sửa tay file `.docx` rồi quên cập nhật đặc tả.
